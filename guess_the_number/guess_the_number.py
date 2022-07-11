@@ -44,7 +44,7 @@ def start_the_game():
     print("Welcome to the Number guessing game!")
     print("I am thinking of a number from 1 to 100.")
     # choose random number from 0 to 100
-    the_number = np.random.randint(1, 101)
+    the_number = np.random.randint(1, 100)
     print(f"I think of {the_number}")
     # a user choose the difficulty level
     difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
