@@ -4,15 +4,16 @@ import colorgram
 
 screen = Screen()
 screen.colormode(255)
+screen.screensize()
 # screen.delay(55)
 
 def get_rgb(color_pos):
     rgb = colors[color_pos].rgb
     return rgb
 
-colors = colorgram.extract('image.jpg', 12)
-print(colors)
-print(len(colors))
+colors = colorgram.extract('image.jpg', 30)
+# print(colors)
+# print(len(colors))
 colors_list = []
 
 for pos in range(len(colors)):
@@ -25,12 +26,24 @@ for pos in range(len(colors)):
     # print(color_tuple)
     colors_list.append(color_tuple)
     
-print(colors_list)
+# print(colors_list)
+
+# first three colors are background colors - to be removed
+for _ in range(3):
+    colors_list.pop(0)
+
+# print(colors_list)
 
 
-timmy_the_turtle = Turtle()
-timmy_the_turtle.shape("turtle")
-timmy_the_turtle.color("DarkGrey")
+timmy = Turtle()
+timmy.shape("turtle")
+timmy.color("DarkGrey")
+timmy.penup()
+timmy.hideturtle()
+# timmy.goto(-300,-200)
+timmy.speed("fastest")
+
+
 
 # def random_color():
 #     r = random.randint(1,255)
@@ -85,5 +98,22 @@ timmy_the_turtle.color("DarkGrey")
 #     timmy_the_turtle.rt(turn_angle)
 
 # Challenge 6 - Hirst painting
+x_cor = -300
+y_cor = -200
+
+for line in range(10):
+    timmy.goto(x_cor, y_cor)
+    for _ in range(10):
+        random_color = random.choice(colors_list)
+        timmy.pencolor(random_color)
+        timmy.pensize(20)
+        # timmy.pendown()
+        # timmy.begin_fill()
+        # timmy.circle(1)
+        timmy.dot(20)
+        # timmy.end_fill()
+        # timmy.penup()
+        timmy.forward(50)
+    y_cor += 50
 
 screen.exitonclick()
