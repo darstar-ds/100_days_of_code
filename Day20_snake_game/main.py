@@ -14,9 +14,7 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
-# print(snake)
-# print(all_turtles)    
-# screen.update()
+
 
 screen.listen()
 screen.onkey(snake.up, "Up")
