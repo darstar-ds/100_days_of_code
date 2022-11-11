@@ -33,6 +33,13 @@ class Snake:
             self.all_turtles[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)   
 
+    def reset(self):
+        for turtle in self.all_turtles:
+            turtle.goto(1000,1000)
+        self.all_turtles.clear()
+        self.create_snake()
+        self.head = self.all_turtles[0]
+
     def up(self):
         if self.head.heading() != DOWN:
             self.head.seth(UP)
