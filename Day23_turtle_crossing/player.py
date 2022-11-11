@@ -20,4 +20,4 @@ class Player(Turtle):
         self.goto(self.xcor(), new_y)
 
     def restart(self):
-        self.goto(STARTING_POSITION)
+        self.goto(0,-280)
