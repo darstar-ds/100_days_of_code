@@ -28,10 +28,11 @@ is_end_game = False
 
 while is_end_game == False:
     if answer_state == "Exit":
-        for state in user_answers:
-            states_list.remove(state)
-        print(states_list)
-        df = pd.DataFrame(states_list, columns = ["stany"])
+        rest_states_list = [st for st in states_list if st not in user_answers]
+        # for state in user_answers:
+        #     states_list.remove(state)
+        # print(rest_states_list)
+        df = pd.DataFrame(rest_states_list, columns = ["stany"])
         df.to_csv("./Day25_US_States_quiz/states_to_learn.csv")        
         break
     if answer_state in states_list:
