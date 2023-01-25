@@ -10,10 +10,18 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
+timer = None
+checkmarks_number = None
 
 # ---------------------------- TIMER RESET ------------------------------- # 
-def reset_pom():
-    pass
+def reset_timer():
+    global checkmarks_number
+    window.after_cancel(timer)
+    pom_title.config(text="Timer", foreground=GREEN, background=YELLOW , font=(FONT_NAME, 48, "normal"))
+    canvas.itemconfig(timer_text, text="00:00")
+    checkmarks_number = 0
+    global reps
+    reps = 0
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
     global reps
@@ -52,9 +60,15 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
 
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        global timer
+        timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
+        print(f"Reps={reps}, and floor = {math.floor((reps)/2)}")
+        checkmarks_number = math.floor((reps)/2)
+        pom_counter = tkinter.Label(text="✔"*checkmarks_number, foreground=GREEN, background=YELLOW , font=(FONT_NAME, 16, "bold"))
+        pom_counter.grid(column=1, row=3)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = tkinter.Tk()
@@ -74,10 +88,10 @@ pom_title.grid(column=1, row=0)
 
 pom_start = tkinter.Button(text="Start", font=("Arial", 16, "normal"), command=start_timer)
 pom_start.grid(column=0, row=2)
-pom_reset = tkinter.Button(text="Reset", font=("Arial", 16, "normal"), command=reset_pom)
+pom_reset = tkinter.Button(text="Reset", font=("Arial", 16, "normal"), command=reset_timer)
 pom_reset.grid(column=2, row=2)
 
-pom_counter = tkinter.Label(text="✔", foreground=GREEN, background=YELLOW , font=(FONT_NAME, 16, "bold"))
-pom_counter.grid(column=1, row=3)
+# pom_counter = tkinter.Label(text="✔", foreground=GREEN, background=YELLOW , font=(FONT_NAME, 16, "bold"))
+# pom_counter.grid(column=1, row=3)
 
 window.mainloop()
