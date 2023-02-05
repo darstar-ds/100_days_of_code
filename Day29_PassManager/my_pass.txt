@@ -4,3 +4,6 @@ bbb | demo@gmail.com | bbb
 ccc | demo@gmail.com | ccc
 eee | demo@gmail.com | 3fghdfghgf
 iiiiii | demo@gmail.com | 788jjhhjv
+yyy | demo@gmail.com | iiihddrt
+Amazon | demo@gmail.com | 12345678
+eBay | demo@gmail.com | 12345678
