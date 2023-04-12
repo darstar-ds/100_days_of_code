@@ -9,7 +9,7 @@ people = pd.read_csv("./Day32_Birthday_Wisher/birthdays.csv")
 # print(type(people))
 
 my_email = "alle.darstar@gmail.com"
-password = "bxosjlkgphmvxfrl"
+password = "PASSWORD"
 
 now = dt.datetime.now()
 dzis_dzien = now.day
