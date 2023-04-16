@@ -7,7 +7,7 @@ MY_LAT = 54.352024 # Your latitude
 MY_LONG = 18.646639 # Your longitude
 
 my_email = "alle.darstar@gmail.com"
-password = "bxosjlkgphmvxfrl"
+password = "PASSWORD"
 is_ISS_visible = False
 is_night = True
 

@@ -4,7 +4,7 @@ import random
 
 
 my_email = "alle.darstar@gmail.com"
-password = "bxosjlkgphmvxfrl"
+password = "PASSWORD"
 
 now = dt.datetime.now()
 dzien_tygodnia = now.weekday()
