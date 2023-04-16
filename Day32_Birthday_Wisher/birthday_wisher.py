@@ -16,7 +16,7 @@ dzis_dzien = now.day
 dzis_miesiac = now.month
 
 for person in people.itertuples():
-    print(person.name, person.month, person.day)
+    # print(person.name, person.month, person.day)
     if dzis_dzien == person.day and dzis_miesiac == person.month:
         # print("Happy Birthday")
         list_templates = os.listdir("./Day32_Birthday_Wisher/letter_templates")
@@ -34,7 +34,7 @@ for person in people.itertuples():
             connection.login(user=my_email, password=password)
             connection.sendmail(
                 from_addr=my_email, 
-                to_addrs="darstar.misc@gmail.com", 
+                to_addrs=person.email, 
                 msg=f"Subject:Happy Birthday\n\n{new_letter_text}."
                 )
 
