@@ -3,6 +3,7 @@ import requests
 parameters = {
     "amount": 10, # I want 10 questions
     "type": "boolean", # I want True/False questions
+    "category": 18, # I want category "Computers"
     }
 
 response = requests.get("https://opentdb.com/api.php", params=parameters)
