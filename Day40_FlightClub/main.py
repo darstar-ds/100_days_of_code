@@ -49,14 +49,26 @@ for entry in sheet_data['prices']:
     max_start_date_param = f"{max_start_date_DD}/{max_start_date_MM}/{max_start_date_YYYY}"
     # print(f"Min start date: {min_start_date_param}, Max start date: {max_start_date_param}")
     getting_city_price = FlightSearch()
-    ds_city_price = getting_city_price.find_city_price(dest_city_IATA_code, min_start_date_param, max_start_date_param)
+    try:
+        ds_city_price = getting_city_price.find_city_price_0stop(dest_city_IATA_code, min_start_date_param, max_start_date_param)
+        ds_via_city = ""
+    except IndexError:
+        try:
+            print("Cannot find any price for 0 stop.")
+            ds_city_price, ds_via_city = getting_city_price.find_city_price_1stop(dest_city_IATA_code, min_start_date_param, max_start_date_param)
+        except IndexError:
+            print("Error: Cannot find any price information even with one stopover.")
+            ds_city_price = None
     sending_message = NotificationManager()
-    if ds_city_price < dest_min_price:
-        sending_message.send_alert(ds_city_price, 
+    try:
+        if ds_city_price < dest_min_price:
+            sending_message.send_emails(ds_city_price, 
+                    ds_via_city,
                    depart_city_name = "London", 
                    depart_iata_code = "LON", 
                    dest_city_name = entry['city'], 
                    dest_iata_code = entry['iataCode'],
                    depart_date = min_start_date_param,
                    arrival_date = max_start_date_param)
-    
+    except TypeError:
+        continue
